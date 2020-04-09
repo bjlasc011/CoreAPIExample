@@ -48,9 +48,6 @@ namespace CoreAPIExample.Controllers
         [ProducesResponseType(typeof(IEnumerable<Employee>), 200)]
         public async Task<IActionResult> GetEmployees([FromQuery] IEnumerable<int> userIDs)
         {
-            if (userIDs == null) return BadRequest(new ArgumentNullException(nameof(userIDs)));
-            if (userIDs.Count() == 0) return BadRequest(new ArgumentException("No userIDs were passed.", nameof(userIDs)));
-
             IEnumerable<Employee> result = default;
             try
             {
@@ -59,6 +56,24 @@ namespace CoreAPIExample.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, $"{nameof(GetEmployees)} has failed", userIDs.Select(id => id.ToString() + ", "));
+                throw;
+            }
+            return new JsonResult(result);
+        }
+
+        [HttpGet]
+        [Route("employee/all")]
+        [ProducesResponseType(typeof(IEnumerable<Employee>), 200)]
+        public async Task<IActionResult> GetAllEmployees()
+        {
+            IEnumerable<Employee> result = default;
+            try
+            {
+                result = await _employeeService.GetAllEmployees();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"{nameof(GetAllEmployees)} has failed.");
                 throw;
             }
             return new JsonResult(result);

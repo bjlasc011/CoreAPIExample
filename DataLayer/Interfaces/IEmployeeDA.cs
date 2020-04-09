@@ -8,5 +8,6 @@ namespace DataAccessLayer.Interfaces
     {
         Task<IEnumerable<Employee>> GetEmployees(IEnumerable<int> userIDs);
         Task<Employee> GetEmployee(int userID);
+        Task<IEnumerable<Employee>> GetAllEmployees();
     }
 }

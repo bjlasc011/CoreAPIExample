@@ -1,5 +1,6 @@
 using BusinessLayer.Interfaces;
 using BusinessLayer.Services;
+using CoreAPIExample.Middleware;
 using DataAccessLayer;
 using DataAccessLayer.Interfaces;
 using Microsoft.AspNetCore.Builder;
@@ -24,8 +25,6 @@ namespace CoreAPIExample
             builder.Build();
 
             Configuration = configuration;
-
-
         }
 
         public IConfiguration Configuration { get; }
@@ -77,6 +76,7 @@ namespace CoreAPIExample
                 app.UseCors();
             }
 
+            // add swagger for viewing available API methods
             app.UseSwagger();
             app.UseSwaggerUI(s =>
             {
@@ -90,6 +90,9 @@ namespace CoreAPIExample
             app.UseAuthorization();
 
             app.UseMvc();
+            
+            // Custom middleware to catch and log errors
+            app.UseExceptionHandlingMiddleware();
 
             app.UseEndpoints(endpoints =>
             {

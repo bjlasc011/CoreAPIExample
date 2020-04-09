@@ -29,5 +29,11 @@ namespace BusinessLayer.Services
             return result;
         }
 
+        public async Task<IEnumerable<Employee>> GetAllEmployees()
+        {
+            var result = await _employeeDA.GetAllEmployees();
+
+            return result;
+        }
     }
 }

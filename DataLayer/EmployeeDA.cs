@@ -19,15 +19,19 @@ namespace DataAccessLayer
         public async Task<IEnumerable<Employee>> GetEmployees(IEnumerable<int> userIDs)
         {
             var result = await GetListAsync();
-            
             return result.Where(e => userIDs.Contains(e.UserID));
         }
 
         public async Task<Employee> GetEmployee(int userID)
         {
             var result = await GetListAsync(userID);
-            
             return result.FirstOrDefault();
+        }
+
+        public async Task<IEnumerable<Employee>> GetAllEmployees()
+        {
+            var result = await GetListAsync();
+            return result;
         }
     }
 }
