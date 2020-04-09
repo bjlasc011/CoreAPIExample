@@ -50,9 +50,7 @@ namespace Models
         }
         public string PhoneNumber { get; set; }
 
-        public DateTimeOffset Birthday { get; set; }
-
-        public string DisplayName { get => $"{LastName}, {FirstName}"; }
+        public DateTimeOffset DOB { get; set; }
     }
 
     public enum EmployeeStatus

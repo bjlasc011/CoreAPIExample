@@ -52,6 +52,11 @@ namespace CoreAPIExample
 
             // Add DA to DI Container
             services.AddSingleton<IEmployeeDA, EmployeeDA>();
+
+            // init local db
+            services.AddSingleton<ConnectionStrings>();
+
+            services.Configure<ConnectionStrings>(Configuration.GetSection(nameof(ConnectionStrings)));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
