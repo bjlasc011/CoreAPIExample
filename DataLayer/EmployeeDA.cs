@@ -42,7 +42,7 @@ namespace DataAccessLayer
             {
                 var employees = new List<Employee>();
 
-                userIDs.ToList().ForEach(id => employees.Add(InitTestEmployee(id)));
+                userIDs.Distinct().ToList().ForEach(id => employees.Add(InitTestEmployee(id)));
                 
                 return employees;
             });
