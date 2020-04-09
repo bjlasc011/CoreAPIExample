@@ -1,0 +1,6 @@
+{
+  "$schema": "https://xunit.net/schema/current/xunit.runner.shcema.json",
+  "diagnosticMessages": true,
+  "methodDisplay": "method",
+  "methodDisplayOptions": "replaceUderscoresWithSpace, useOperatorMonikers, userEscapeSequences, replacePeriodWithComma"
+}
